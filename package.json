@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/pnpm/read-package-json#readme",
   "dependencies": {
-    "@pnpm/types": "^1.7.0",
+    "@pnpm/types": "^2.0.0",
     "read-package-json": "^2.0.13",
     "util.promisify": "^1.0.0"
   },
