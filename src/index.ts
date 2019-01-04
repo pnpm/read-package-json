@@ -6,7 +6,12 @@ import promisify = require('util.promisify')
 const readPackageJson = promisify(readPackageJsonCB)
 
 export default function readPkg (pkgPath: string): Promise<PackageJson> {
-  return readPackageJson(pkgPath)
+  try {
+    return readPackageJson(pkgPath);
+  } catch (err) {
+    console.error(`Error in parsing package.json: ${err.message)`);
+    return Promise.resolve({});
+  }
 }
 
 export function fromDir (pkgPath: string): Promise<PackageJson> {
