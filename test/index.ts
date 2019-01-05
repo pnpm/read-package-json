@@ -2,6 +2,8 @@ import readPackageJson, {fromDir as readPackageJsonFromDir} from '@pnpm/read-pac
 import test = require('tape')
 import path = require('path')
 
+const fixtures = path.join(__dirname, 'fixtures')
+
 test('readPackageJson()', async (t) => {
   t.equal((await readPackageJson(path.join(__dirname, '..', 'package.json'))).name, '@pnpm/read-package-json')
   t.end()
@@ -9,5 +11,16 @@ test('readPackageJson()', async (t) => {
 
 test('fromDir()', async (t) => {
   t.equal((await readPackageJsonFromDir(path.join(__dirname, '..'))).name, '@pnpm/read-package-json')
+  t.end()
+})
+
+test('readPackageJson() throw error when name is invalid', async (t) => {
+  let err
+  try {
+    await readPackageJson(path.join(fixtures, 'invalid-name', 'package.json'))
+  } catch (_) {
+    err = _
+  }
+  t.equal(err.code, 'ERR_PNPM_BAD_PACKAGE_JSON')
   t.end()
 })

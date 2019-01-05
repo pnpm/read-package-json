@@ -5,8 +5,14 @@ import promisify = require('util.promisify')
 
 const readPackageJson = promisify(readPackageJsonCB)
 
-export default function readPkg (pkgPath: string): Promise<PackageJson> {
-  return readPackageJson(pkgPath)
+export default async function readPkg (pkgPath: string): Promise<PackageJson> {
+  try {
+    return await readPackageJson(pkgPath)
+  } catch (err) {
+    const pnpmError = new Error(`${pkgPath}: ${err.message}`)
+    pnpmError['code'] = 'ERR_PNPM_BAD_PACKAGE_JSON' // tslint:disable-line
+    throw pnpmError
+  }
 }
 
 export function fromDir (pkgPath: string): Promise<PackageJson> {
