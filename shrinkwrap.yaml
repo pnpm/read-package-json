@@ -3014,7 +3014,7 @@ specifiers:
   mos: ^2.0.0-alpha.3
   mos-plugin-readme: ^1.0.4
   package-preview: ^2.0.0
-  read-package-json: ^2.0.13
+  read-package-json: 2.0.13
   tape: ^4.8.0
   ts-node: ^7.0.0
   tslint: ^5.8.0
