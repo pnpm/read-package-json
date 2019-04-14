@@ -1,3 +1,5 @@
+> this package was moved to the pnpm monorepo: https://github.com/pnpm/pnpm
+
 # @pnpm/read-package-json
 
 > Read a package.json
